@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Manim
+media/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Audio
+*.mp3
+*.wav
+*.m4a
+*.ogg
+*.flac
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
