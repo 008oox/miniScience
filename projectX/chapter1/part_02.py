@@ -3,7 +3,7 @@ from project_init import *
 
 class Part02(Scene):
 
-    def shot_02_fingers(self, Scene):
+    def shot_02(self, Scene):
 
         text_voice = "很久很久以前，人们习惯于数数时，用掰手指的方式计数：一、二、三、四、五、六、七、八、九、十！"
         add_voice(Scene, text_voice)

@@ -19,7 +19,17 @@ from chapter1.part_14 import Part14
 class AllScenes(Scene):
     def construct(self):
         Part01().shot_01_intro(self)
-        Part02().shot_02_fingers(self)
-        Part03().shot_03_decimal(self)
-        Part04().shot_04_abacus(self)
+        Part02().shot_02(self)
+        Part03().shot_03(self)
+        Part04().shot_04(self)
+        Part05().shot_05(self)
+        Part06().shot_06(self)
+        Part07().shot_07(self)
+        Part08().shot_08(self)
+        Part09().shot_09(self)
+        Part10().shot_10(self)
+        Part11().shot_11(self)
+        Part12().shot_12(self)
+        Part13().shot_13(self)
+        Part14().shot_14(self)
         

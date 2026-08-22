@@ -2,95 +2,30 @@ from manim import *
 from project_init import *
 
 class Part14(Scene):
-    def shot_14_ending(self):
-        self.add_voice("14.mp3")
-        bg = self.background("#B7E4A8")
+    def shot_14(self, Scene):
+        text_voice = "感谢收看！下一章，聊电子计算器，咱们不见不散。"
+        add_voice(Scene, text_voice)
+        voice_time = 2
+        bg = background("#B7E4A8")
 
-        bamboo_l = self.bamboo(
-            -5,
-            -3,
-            1
-        )
+        calculator = ImageMobject(asset_path("calculator.png"))
+        calculator.scale(0.9)
+        calculator.move_to(DOWN * 0.4)
 
-        bamboo_r = self.bamboo(
-            5,
-            -3,
-            1
-        )
+        title = title_text("火炬哥课堂之：下一章 电子计算器的崛起",40)
 
-        panda, hand = self.panda(0.9)
+        title.to_edge(UP, buff=0.4)
 
-        panda.move_to(
-            DOWN * 0.4
-        )
+        subtitle_text = subtitle(text_voice)
 
-        ending = Text(
-            "未完待续",
-            font="Microsoft YaHei",
-            font_size=65,
-            color="#D64545"
-        )
+        Scene.add(bg)
 
-        ending.move_to(
-            RIGHT * 3 + UP * 1
-        )
+        Scene.play(FadeIn(title),run_time=0.8)
 
-        subtitle = self.subtitle(
-            "下次，我们再看看更神奇的机器！拜拜～"
-        )
+        Scene.play(FadeIn(calculator),run_time=1)
 
-        beads = VGroup()
+        Scene.play(FadeIn(subtitle_text),run_time=0.5)
 
-        for i in range(8):
+        Scene.wait(voice_time)
 
-            bead = Circle(
-                radius=0.13,
-                fill_color="#D34B3E",
-                fill_opacity=1,
-                stroke_width=0
-            )
-
-            bead.move_to(
-                [
-                    -3 + i * 0.8,
-                    -2.7 + 0.3 * (i % 2),
-                    0
-                ]
-            )
-
-            beads.add(bead)
-
-        self.add(bg)
-
-        self.play(
-            FadeIn(bamboo_l),
-            FadeIn(bamboo_r),
-            run_time=0.8
-        )
-
-        self.play(
-            FadeIn(panda, shift=UP),
-            run_time=1
-        )
-
-        self.play(
-            FadeIn(ending),
-            run_time=1
-        )
-
-        self.play(
-            Rotate(
-                hand,
-                PI / 3,
-                about_point=hand.get_center()
-            ),
-            run_time=0.4
-        )
-
-        self.play(
-            FadeIn(beads),
-            FadeIn(subtitle),
-            run_time=0.8
-        )
-
-        self.wait(4)
+        Scene.clear()

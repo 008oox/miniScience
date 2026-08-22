@@ -2,64 +2,33 @@ from manim import *
 from project_init import *
 
 class Part09(Scene):
-    def shot_09_calculator(self):
-        self.add_voice("09.mp3")
-        bg = self.background("#D7C6B0")
+    def shot_09(self, Scene):
+        text_voice = """在17世纪时，欧洲人曾发明了机械计算器，这是一种替代算盘的尝试。"""
+        add_voice(Scene, text_voice)
+        voice_time = 4
+        bg = background("#AAC5F4")
+        
+        market = title_text("机械计算器 → 新的尝试",42)
 
-        title = self.title_text(
-            "17世纪 · 欧洲书房",
-            42
-        )
+        market.to_edge(UP)
 
-        title.to_edge(UP)
+        abacus = ImageMobject(asset_path("calculator_old.png"))
 
-        desk = Rectangle(
-            width=10,
-            height=1.2,
-            fill_color="#6B4528",
-            fill_opacity=1,
-            stroke_width=0
-        )
+        abacus.move_to(DOWN * 0.2)
 
-        desk.to_edge(DOWN, buff=1)
+        subtitle_text = subtitle(text_voice)
 
-        calc = self.calculator(1.0)
+        Scene.add(bg)
 
-        calc.move_to(
-            DOWN * 0.5
-        )
-
-        subtitle = self.subtitle(
-            "到了17世纪，欧洲人发明了机械计算器！"
-        )
-
-        self.add(bg)
-
-        self.play(
-            FadeIn(title),
-            FadeIn(desk),
+        Scene.play(
+            FadeIn(market),
             run_time=0.8
         )
 
-        self.play(
-            FadeIn(calc, shift=UP),
-            run_time=1
-        )
+        Scene.play(FadeIn(abacus),run_time=1)
 
-        self.play(
-            Rotate(
-                calc[-1],
-                PI / 2,
-                about_point=calc[-1].get_start()
-            ),
-            run_time=1
-        )
+        Scene.play(FadeIn(subtitle_text),run_time=0.5)
 
-        self.play(
-            FadeIn(subtitle),
-            run_time=0.5
-        )
+        Scene.wait(voice_time)
 
-        self.wait(5)
-
-        self.clear()
+        Scene.clear()

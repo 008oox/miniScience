@@ -2,66 +2,40 @@ from manim import *
 from project_init import *
 
 class Part06(Scene):
-    def shot_06_place_value(self):
-        self.add_voice("06.mp3")
-        bg = self.background("#F1E4C8")
+    def shot_06(self, Scene):
+        text_voice = """当计数超出了算盘的计算范围时，人们可以拼接算盘，来进行更大数字的计算。"""
+        add_voice(Scene, text_voice)
 
-        abacus = self.abacus(0.9)
+        voice_time = 3
+        bg = background("#E8C99B")
 
-        abacus.move_to(
-            DOWN * 0.4
-        )
+        title = title_text("计数超出范围 → 算盘的扩容", 42)
+        title.to_edge(UP)
 
-        labels = VGroup()
+        abacus_1 = ImageMobject(asset_path("abacus.png"))
+        abacus_1.scale(0.48)
+        abacus_1.move_to(LEFT * 1.6 + DOWN * 0.6)
 
-        names = [
-            "个",
-            "十",
-            "百",
-            "千"
-        ]
+        abacus_2 = ImageMobject(asset_path("abacus.png"))
+        abacus_2.scale(0.48)
+        abacus_2.move_to(RIGHT * 1.6 + DOWN * 0.6)
 
-        for i, name in enumerate(names):
+        abacus_2.shift(RIGHT * 3)
 
-            t = Text(
-                name,
-                font="Microsoft YaHei",
-                font_size=35
-            )
+        subtitle_text = subtitle(text_voice)
 
-            t.move_to(
-                [-3 + i * 2, 2, 0]
-            )
+        Scene.add(bg)
 
-            labels.add(t)
+        Scene.play(FadeIn(title),run_time=0.8)
 
-        subtitle = self.subtitle(
-            "而且，中国算盘大多是十进制的，和我们平时数数一模一样，特别好理解！"
-        )
+        Scene.play(FadeIn(abacus_1),run_time=1)
 
-        self.add(bg)
+        Scene.play(FadeIn(subtitle_text),run_time=0.5)
 
-        self.play(
-            FadeIn(abacus),
-            run_time=1
-        )
+        Scene.wait(0.5)
 
-        self.play(
-            LaggedStart(
-                *[
-                    FadeIn(x)
-                    for x in labels
-                ],
-                lag_ratio=0.3
-            ),
-            run_time=1.5
-        )
+        Scene.play(abacus_2.animate.shift(LEFT * 3),run_time=1.2)
 
-        self.play(
-            FadeIn(subtitle),
-            run_time=0.5
-        )
+        Scene.wait(voice_time)
 
-        self.wait(5)
-
-        self.clear()
+        Scene.clear()

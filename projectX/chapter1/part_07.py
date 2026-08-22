@@ -2,55 +2,33 @@ from manim import *
 from project_init import *
 
 class Part07(Scene):
-    def shot_07_abacus_expand(self):
-        self.add_voice("07.mp3")
-        bg = self.background("#D6EAC5")
+    def shot_07(self, Scene):
+        text_voice = """在中国直到上世纪90年代前，人们还在普遍使用算盘来进行核算。"""
+        add_voice(Scene, text_voice)
+        voice_time = 3.5
+        bg = background("#AAC5F4")
+        
+        market = title_text("算盘 → 真的用了很久",42)
 
-        abacus1 = self.abacus(0.65)
-        abacus2 = self.abacus(0.65)
+        market.to_edge(UP)
 
-        abacus1.move_to(LEFT * 3)
-        abacus2.move_to(RIGHT * 3)
+        abacus = ImageMobject(asset_path("abacushand.png"))
 
-        plus = Text(
-            "+",
-            font="Consolas",
-            font_size=60
-        )
+        abacus.move_to(DOWN * 0.6)
 
-        plus.move_to(ORIGIN)
+        subtitle_text = subtitle(text_voice)
 
-        result = Text(
-            "计算范围扩大！",
-            font="Microsoft YaHei",
-            font_size=42
-        )
+        Scene.add(bg)
 
-        result.to_edge(UP)
-
-        subtitle = self.subtitle(
-            "要是数太大了怎么办？再拼一架算盘就行，计算范围轻松扩大！"
-        )
-
-        self.add(bg)
-
-        self.play(
-            FadeIn(abacus1),
-            FadeIn(plus),
+        Scene.play(
+            FadeIn(market),
             run_time=0.8
         )
 
-        self.play(
-            abacus2.animate.move_to(RIGHT * 1.8),
-            run_time=1
-        )
+        Scene.play(FadeIn(abacus),run_time=1)
 
-        self.play(
-            FadeIn(result),
-            FadeIn(subtitle),
-            run_time=0.8
-        )
+        Scene.play(FadeIn(subtitle_text),run_time=0.5)
 
-        self.wait(5)
+        Scene.wait(voice_time)
 
-        self.clear()
+        Scene.clear()

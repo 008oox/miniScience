@@ -38,8 +38,8 @@ class Part01(Scene):
 
         hello = Text(
             "嗨！",
-            font="Microsoft YaHei",
-            font_size=32
+            font_size=32,
+            fill_color=GREEN
         )
 
         hello.move_to(bubble.get_center())

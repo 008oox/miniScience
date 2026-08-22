@@ -2,66 +2,40 @@ from manim import *
 from project_init import *
 
 class Part11(Scene):
-    def shot_11_calculator_easy(self):
-        self.add_voice("11.mp3")
-        bg = self.background("#DCEAD4")
+    def shot_11(self, Scene):
+        text_voice = """相比算盘，机械计算器操作方便，做复杂计算的效率高，减少了人为错误。但他并没大规模替代算盘。"""
+        add_voice(Scene, text_voice)
 
-        person = Circle(
-            radius=0.8,
-            fill_color="#F0C49A",
-            fill_opacity=1,
-            stroke_color=BLACK
-        )
+        voice_time = 5.5
+        bg = background("#E8C99B")
 
-        person.move_to(
-            LEFT * 2
-        )
+        title = title_text("机械计算器 → 优势", 42)
+        title.to_edge(UP)
 
-        manual = Rectangle(
-            width=2.5,
-            height=3,
-            fill_color=WHITE,
-            fill_opacity=1,
-            stroke_color=BLACK
-        )
+        abacus_1 = ImageMobject(asset_path("abacus.png"))
+        abacus_1.scale(0.68)
+        abacus_1.move_to(LEFT * 2 + DOWN * 0.6)
 
-        manual.move_to(
-            RIGHT * 1
-        )
+        calculator_old = ImageMobject(asset_path("calculator_old.png"))
+        calculator_old.scale(0.48)
+        calculator_old.move_to(RIGHT * 2 + DOWN * 0.6)
 
-        ok = Text(
-            "OK!",
-            font="Consolas",
-            font_size=50,
-            color=GREEN
-        )
+        calculator_old.shift(RIGHT * 3)
 
-        ok.move_to(
-            RIGHT * 3.5
-        )
+        subtitle_text = subtitle(text_voice)
 
-        subtitle = self.subtitle(
-            "培训也更简单了，不用背复杂的口诀，摇一摇就行！"
-        )
+        Scene.add(bg)
 
-        self.add(bg)
+        Scene.play(FadeIn(title),run_time=0.8)
 
-        self.play(
-            FadeIn(person),
-            FadeIn(manual),
-            run_time=1
-        )
+        Scene.play(FadeIn(abacus_1),run_time=1)
 
-        self.play(
-            FadeIn(ok),
-            run_time=0.8
-        )
+        Scene.play(FadeIn(subtitle_text),run_time=0.5)
 
-        self.play(
-            FadeIn(subtitle),
-            run_time=0.5
-        )
+        Scene.wait(0.5)
 
-        self.wait(6)
+        Scene.play(calculator_old.animate.shift(LEFT * 3),run_time=1.2)
 
-        self.clear()
+        Scene.wait(voice_time)
+
+        Scene.clear()

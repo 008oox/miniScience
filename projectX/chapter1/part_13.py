@@ -2,108 +2,42 @@ from manim import *
 from project_init import *
 
 class Part13(Scene):
-    def shot_13_tunnel(self):
-        self.add_voice("13.mp3")
-        bg = self.background("#17152B")
+    def shot_13(self, Scene):
+        text_voice = """从掰手指，拨算盘到摇机械计算器，人类一直在寻找更好的计算工具，来帮助我们进行复杂的计算。"""
+        add_voice(Scene, text_voice)
 
-        tunnel = VGroup()
+        voice_time = 6
+        bg = background("#E8C99B")
 
-        for r in [1, 2, 3, 4, 5]:
-
-            circle = Circle(
-                radius=r,
-                stroke_color=PURPLE,
-                stroke_width=3,
-                fill_opacity=0
-            )
-
-            tunnel.add(circle)
-
-        panda, hand = self.panda(0.65)
-
-        panda.move_to(
-            DOWN * 0.4
-        )
-
-        abacus = self.abacus(0.35)
-        abacus.move_to(
-            LEFT * 4
-        )
-
-        calc = self.calculator(0.35)
-        calc.move_to(
-            RIGHT * 4
-        )
-
-        old_computer = Rectangle(
-            width=1.5,
-            height=1.2,
-            fill_color="#555555",
-            fill_opacity=0.8
-        )
-
-        old_computer.move_to(
-            LEFT * 2 + UP * 1.5
-        )
-
-        phone = RoundedRectangle(
-            width=0.9,
-            height=1.6,
-            corner_radius=0.12,
-            fill_color="#444444",
-            fill_opacity=0.8
-        )
-
-        phone.move_to(
-            RIGHT * 2 + UP * 1.5
-        )
-
-        title = self.title_text(
-            "从手指 → 算盘 → 机械计算器",
-            38
-        )
-
+        title = title_text("计算器具序章 → 总结", 42)
         title.to_edge(UP)
 
-        subtitle = self.subtitle(
-            "从手指到算盘，再到机械计算器，人类从没停止追求更快的计算！"
-        )
+        fingers = ImageMobject(asset_path("finger.png"))
+        fingers.scale(0.5)
+        fingers.move_to(LEFT * 3 + DOWN * 0.6)
 
-        self.add(bg)
+        abacus_1 = ImageMobject(asset_path("abacus.png"))
+        abacus_1.scale(0.48)
+        abacus_1.move_to(DOWN * 0.6)
 
-        self.play(
-            FadeIn(tunnel),
-            run_time=1
-        )
+        calculator_old = ImageMobject(asset_path("calculator_old.png"))
+        calculator_old.scale(0.4)
+        calculator_old.move_to(RIGHT * 3 + DOWN * 0.6)
 
-        self.play(
-            FadeIn(abacus),
-            FadeIn(calc),
-            FadeIn(old_computer),
-            FadeIn(phone),
-            run_time=1
-        )
+        subtitle_text = subtitle(text_voice)
 
-        self.play(
-            FadeIn(panda),
-            FadeIn(title),
-            run_time=1
-        )
+        Scene.add(bg)
+        
+        Scene.play(FadeIn(subtitle_text),run_time=0.1)
 
-        self.play(
-            Rotate(
-                hand,
-                PI / 3,
-                about_point=hand.get_center()
-            ),
-            run_time=0.5
-        )
+        Scene.play(FadeIn(title),run_time=0.1)
 
-        self.play(
-            FadeIn(subtitle),
-            run_time=0.5
-        )
+        Scene.play(FadeIn(fingers), run_time=0.5)
 
-        self.wait(5)
+        Scene.play(FadeIn(abacus_1),run_time=0.9)
 
-        self.clear()
+        Scene.play(FadeIn(calculator_old),run_time=1.3)
+
+        Scene.wait(voice_time)
+
+        Scene.clear()
